@@ -1,0 +1,785 @@
+/* ======================================= */
+/* ====== VARIABLES Y ESTILOS BASE ======= */
+/* ======================================= */
+
+:root {
+    --green-platzi: #98CA3F;
+    --light-bg: #F3F8FF;
+    --dark-text: #1E293B;
+    --dark-bg: #0F172A;
+    --light-text: #E2E8F0;
+    --card-dark-bg: #1E293B;
+    --border-dark: #334155;
+    --border-light: #e5e7eb;
+    --contact-blue: #00A3FF;
+}
+
+html {
+    scroll-padding-top: 80px; 
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, .navbar-brand {
+    font-family: 'Poppins', sans-serif;
+}
+
+.accent-color {
+    color: var(--green-platzi);
+}
+
+p {
+    text-align: justify;
+}
+
+
+footer p {
+    text-align: center;
+}
+
+.acerca-texto {
+    text-align: justify;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* ======================================= */
+/* =========== MODOS LIGHT/DARK ========== */
+/* ======================================= */
+
+[data-bs-theme='light'] {
+    background-color: var(--light-bg);
+    color: var(--dark-text);
+}
+[data-bs-theme='light'] .card {
+    background-color: #fff;
+    border: 1px solid var(--border-light);
+}
+[data-bs-theme='light'] .nav-link {
+    color: var(--dark-text);
+}
+[data-bs-theme='light'] .nav-link:hover {
+    color: var(--green-platzi);
+}
+[data-bs-theme='dark'] {
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+}
+[data-bs-theme='dark'] .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+[data-bs-theme='dark'] .navbar-toggler-icon {
+    filter: invert(1);
+}
+[data-bs-theme='dark'] .navbar-brand,
+[data-bs-theme='dark'] .form-check-label,
+[data-bs-theme='dark'] .nav-link {
+    color: var(--light-text);
+}
+[data-bs-theme='dark'] .nav-link:hover {
+    color: var(--green-platzi);
+}
+[data-bs-theme='dark'] .card {
+    background-color: var(--card-dark-bg);
+    border: 1px solid var(--border-dark);
+}
+[data-bs-theme='dark'] .card-text,
+[data-bs-theme='dark'] footer p,
+[data-bs-theme='dark'] .text-muted-dark {
+    color: #94a3b8 !important;
+}
+
+/* ======================================= */
+/* ======== COMPONENTES GENERALES ======== */
+/* ======================================= */
+
+.navbar {
+    background-color: transparent;
+    box-shadow: none;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+    z-index: 1030;
+    position: sticky; /* Asegura que la navbar se quede arriba */
+}
+.navbar.scrolled {
+    background-color: var(--bs-body-bg);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+[data-bs-theme='dark'] .navbar.scrolled {
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.25);
+}
+
+.nav-link {
+    font-weight: 600;
+    transition: color 0.2s ease-in-out;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--green-platzi);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease-out;
+}
+.nav-link.active {
+    color: var(--green-platzi) !important;
+}
+.nav-link.active::after {
+    transform: scaleX(1);
+}
+
+footer {
+    border-top: 1px solid var(--border-light);
+}
+[data-bs-theme='dark'] footer {
+    border-top: 1px solid var(--border-dark);
+}
+
+/* ======================================= */
+/* ====== ESTILOS DEL LOGO NAVBAR ======== */
+/* ======================================= */
+
+.navbar-logo {
+    height: 45px;
+    width: auto;
+    vertical-align: middle;
+    transition: transform 0.3s ease;
+}
+.navbar-logo:hover {
+    transform: scale(1.05);
+}
+[data-bs-theme='dark'] .navbar-brand .navbar-logo {
+    content: url('logoweb-dark.png');
+}
+
+/* ======================================= */
+/* === BOTÓN RESUMEN Y OTROS AJUSTES NAV === */
+/* ======================================= */
+.resume-button {
+    color: var(--green-platzi);
+    border-color: var(--green-platzi);
+    padding: 0.3rem 0.8rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.resume-button:hover {
+    background-color: var(--green-platzi);
+    color: var(--dark-bg);
+}
+[data-bs-theme='dark'] .resume-button {
+    color: var(--green-platzi);
+    border-color: var(--green-platzi);
+}
+[data-bs-theme='dark'] .resume-button:hover {
+    background-color: var(--green-platzi);
+    color: var(--dark-bg);
+}
+
+
+/* ======================================= */
+/* ====== SECCIÓN EXPERIENCIA (TIMELINE) ==== */
+/* ======================================= */
+.timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    background-color: var(--border-light);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1.5px;
+}
+[data-bs-theme='dark'] .timeline::after {
+    background-color: var(--border-dark);
+}
+.timeline-container {
+    padding: 10px 40px;
+    position: relative;
+    width: 50%;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.timeline-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.timeline-container.left {
+    left: 0;
+}
+.timeline-container.right {
+    left: 50%;
+}
+.timeline-icon {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: -20px;
+    top: 15px;
+    background-color: var(--green-platzi);
+    border-radius: 50%;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: white;
+}
+.timeline-container.right .timeline-icon {
+    left: -20px;
+}
+.timeline-content {
+    padding: 1.5rem;
+    background-color: var(--bs-body-tertiary);
+    position: relative;
+    border-radius: 6px;
+}
+[data-bs-theme='dark'] .timeline-content {
+    background-color: var(--card-dark-bg);
+}
+.timeline-content::after {
+    content: " ";
+    position: absolute;
+    top: 22px;
+    right: -15px;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid var(--bs-body-tertiary);
+}
+[data-bs-theme='dark'] .timeline-content::after {
+    border-left-color: var(--card-dark-bg);
+}
+.timeline-container.right .timeline-content::after {
+    left: -15px;
+    border-left: none;
+    border-right: 15px solid var(--bs-body-tertiary);
+}
+[data-bs-theme='dark'] .timeline-container.right .timeline-content::after {
+    border-right-color: var(--card-dark-bg);
+}
+.timeline-content .timeline-date {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--green-platzi);
+    margin-bottom: 0.5rem;
+}
+@media screen and (max-width: 768px) {
+    .timeline::after {
+        left: 20px;
+    }
+    .timeline-container {
+        width: 100%;
+        padding-left: 60px;
+        padding-right: 15px;
+    }
+    .timeline-container.right {
+        left: 0%;
+    }
+    .timeline-icon {
+        left: 0;
+    }
+    .timeline-container.right .timeline-icon,
+    .timeline-container.left .timeline-icon {
+        left: 0;
+    }
+    .timeline-content::after,
+    .timeline-container.right .timeline-content::after {
+        left: -15px;
+        border-left: none;
+        border-right: 15px solid var(--bs-body-tertiary);
+    }
+    [data-bs-theme='dark'] .timeline-content::after,
+    [data-bs-theme='dark'] .timeline-container.right .timeline-content::after {
+        border-right-color: var(--card-dark-bg);
+    }
+}
+
+/* ======================================= */
+/* ====== SECCIÓN DE HABILIDADES ========= */
+/* ======================================= */
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    transition: transform 0.2s ease;
+    text-align: center;
+}
+.tech-item:hover {
+    transform: translateY(-5px);
+}
+.tech-item img {
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+.tech-item:hover img {
+    filter: grayscale(0%);
+}
+.tech-item span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.2;
+}
+[data-bs-theme='dark'] .tech-item img {
+    filter: grayscale(100%) invert(95%) sepia(5%) saturate(150%) hue-rotate(180deg) brightness(85%) contrast(85%);
+}
+[data-bs-theme='dark'] .tech-item:hover img {
+    filter: grayscale(0%) invert(0);
+}
+
+/* ======================================= */
+/* ====== SECCIÓN DE PROYECTOS (LISTA) === */
+/* ======================================= */
+.project-list-item {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border-light);
+    transition: background-color 0.3s ease, opacity 0.5s, transform 0.5s;
+    opacity: 0;
+    transform: translateY(20px);
+}
+.project-list-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+[data-bs-theme='dark'] .project-list-item {
+    border-bottom: 1px solid var(--border-dark);
+}
+.project-list-item:hover {
+    background-color: rgba(0,0,0,0.02);
+}
+[data-bs-theme='dark'] .project-list-item:hover {
+    background-color: rgba(255,255,255,0.03);
+}
+
+.project-list-image img {
+    border-radius: 0.25rem;
+    filter: saturate(0);
+    transition: filter 0.3s ease;
+}
+.project-list-item:hover .project-list-image img {
+    filter: saturate(1);
+}
+
+.project-list-title {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+[data-bs-theme='dark'] .project-list-title {
+    color: var(--light-text);
+}
+
+.project-list-description {
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    color: #6c757d;
+}
+[data-bs-theme='dark'] .project-list-description {
+    color: #8892b0;
+}
+
+.project-tech-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    color: var(--green-platzi);
+    font-weight: 600;
+}
+
+@media (max-width: 767px) {
+    .project-list-item {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .project-list-image {
+        max-width: 150px;
+        margin: 0 auto 1rem auto;
+    }
+    .project-tech-list {
+        justify-content: center;
+    }
+}
+
+
+/* ======================================= */
+/* ====== SECCIÓN MIS PASIONES =========== */
+/* ======================================= */
+.friki-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+.friki-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.friki-item a {
+    display: block;
+    height: 100%;
+    cursor: zoom-in;
+}
+.friki-item.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+.friki-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.friki-item:hover img {
+    transform: scale(1.1);
+}
+.friki-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+    color: white;
+    padding: 3rem 1.5rem 1.5rem;
+    transform: translateY(100%);
+    transition: transform 0.4s ease-in-out;
+    pointer-events: none;
+}
+.friki-item a:hover .friki-overlay {
+    transform: translateY(0);
+}
+.friki-overlay h3 {
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+.friki-overlay p {
+    margin: 0;
+    color: #ddd;
+    text-align: left;
+}
+
+/* ======================================= */
+/* ====== SECCIÓN DE CONTACTO ============ */
+/* ======================================= */
+
+.contact-title {
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+.contact-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background-color: var(--green-platzi);
+    border-radius: 2px;
+}
+#contacto .lead {
+    font-size: 1rem;
+    font-weight: 400;
+}
+.social-icons-contact a {
+    font-size: 1.5rem;
+    color: #999;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.social-icons-contact a:hover {
+    color: var(--green-platzi);
+    transform: scale(1.2);
+}
+[data-bs-theme='dark'] .social-icons-contact a {
+    color: #777;
+}
+[data-bs-theme='dark'] .social-icons-contact a:hover {
+    color: var(--green-platzi);
+}
+.contact-form .form-control {
+    background-color: #e9ecef;
+    border: none;
+    padding: 0.55rem 1rem;
+    border-radius: 0.5rem;
+}
+.contact-form .form-control:focus {
+    background-color: #fff;
+    box-shadow: 0 0 0 2px var(--green-platzi);
+}
+[data-bs-theme='dark'] .contact-form .form-control {
+    background-color: var(--card-dark-bg);
+    color: var(--light-text);
+}
+[data-bs-theme='dark'] .contact-form .form-control::placeholder {
+    color: #888;
+}
+[data-bs-theme='dark'] .contact-form .form-control:focus {
+    background-color: #1a2c52;
+    box-shadow: 0 0 0 2px var(--contact-blue);
+}
+.btn-contact {
+    background-color: var(--contact-blue);
+    color: white;
+    font-weight: 700;
+    padding: 0.55rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.btn-contact:hover {
+    background-color: #008ad6;
+    transform: translateY(-2px);
+    color: white;
+}
+
+/* ======================================= */
+/* ====== SECCIÓN DE ARTÍCULOS =========== */
+/* ======================================= */
+.article-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.article-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+}
+[data-bs-theme='dark'] .article-card:hover {
+    box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+}
+.article-card .card-footer a i {
+    transition: transform 0.2s ease-in-out;
+}
+.article-card:hover .card-footer a i {
+    transform: translateX(5px);
+}
+
+/* ======================================= */
+/* ====== BARRA LATERAL SOCIAL =========== */
+/* ======================================= */
+.social-sidebar {
+    position: fixed;
+    /* Cambiamos bottom: 0 por un centrado vertical */
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: auto; /* Importante para anular la regla anterior */
+    
+    left: 40px; /* Puedes ajustar esto a 50px o 60px para alinearlo mejor con la lámpara */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px; /* Aumenté un poco el espacio entre iconos para que respiren */
+    z-index: 1000;
+}
+
+/* Ocultamos la línea, ya que en el centro suele sobrar */
+.sidebar-line {
+    display: none; 
+}
+
+/* Ocultamos la línea, ya que en el centro suele sobrar */
+.sidebar-line {
+    display: none; 
+}
+
+.social-sidebar a {
+    color: var(--dark-text);
+    font-size: 1.6rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+    padding: 5px;
+}
+[data-bs-theme='dark'] .social-sidebar a {
+    color: var(--light-text);
+}
+.social-sidebar a:hover {
+    color: var(--green-platzi);
+    transform: translateY(-5px);
+}
+.sidebar-line {
+    width: 1px;
+    height: 90px;
+    background-color: var(--dark-text);
+}
+[data-bs-theme='dark'] .sidebar-line {
+    background-color: var(--green-platzi);
+}
+@media (max-width: 991px) {
+    .social-sidebar {
+        display: none;
+    }
+}
+
+/* ======================================= */
+/* ====== LÁMPARA COLGANTE MODO OSCURO === */
+/* ======================================= */
+
+.lamp-container {
+    position: fixed; 
+    top: 0; 
+    left: 60px; 
+    width: 35px; 
+    height: 100%; 
+    pointer-events: none; 
+    z-index: 1020; 
+    overflow: visible; 
+}
+
+.hanging-lamp {
+    position: absolute;
+    top: 55px; 
+    left: 0;
+    transform: translateX(-50%); 
+    width: 50px; 
+    height: 150px; 
+    overflow: visible; 
+}
+
+
+.hanging-lamp .lamp-cord {
+    stroke-width: 1;
+    stroke: var(--dark-text); 
+    transition: stroke 0.4s ease;
+}
+
+.hanging-lamp .lamp-shade {
+    fill: #B4A0CD; 
+    stroke: var(--dark-text);
+    stroke-width: 1;
+    transition: fill 0.4s ease, stroke 0.4s ease; 
+}
+
+.hanging-lamp .lamp-bulb {
+    fill: #d3d3d3; 
+    stroke: #808080;
+    stroke-width: 1;
+    filter: drop-shadow(0 0 0px #FFD700);
+}
+
+.hanging-lamp .lamp-beam {
+    fill: rgba(255, 220, 50, 0); 
+}
+
+/* --- ESTILOS PARA MODO OSCURO (CON ANIMACIÓN) --- */
+
+[data-bs-theme='dark'] .hanging-lamp .lamp-cord {
+    stroke: var(--light-text);
+}
+
+[data-bs-theme='dark'] .hanging-lamp .lamp-shade {
+    fill: #927FB8; 
+    stroke: var(--light-text);
+}
+
+[data-bs-theme='dark'] .hanging-lamp .lamp-bulb {
+    animation: bulb-glow-animation 0.5s forwards;
+}
+
+[data-bs-theme='dark'] .hanging-lamp .lamp-beam {
+    animation: beam-fade-in-animation 0.7s forwards;
+}
+
+@media (max-width: 991px) {
+    .lamp-container {
+        display: none; 
+    }
+}
+
+
+/* --- DEFINICIÓN DE ANIMACIONES DE ENCENDIDO --- */
+
+@keyframes bulb-glow-animation {
+    0% {
+        fill: #d3d3d3;
+        stroke: #808080;
+        filter: drop-shadow(0 0 0px #FFD700);
+    }
+    50% {
+        fill: #ffeaa7; 
+        stroke: #ffeaa7;
+        filter: drop-shadow(0 0 5px #FFD700);
+    }
+    100% {
+        fill: #FFD700;
+        stroke: #FFD700;
+        filter: drop-shadow(0 0 12px #FFD700);
+    }
+}
+
+@keyframes beam-fade-in-animation {
+    0% {
+        fill: rgba(255, 220, 50, 0);
+    }
+    100% {
+        fill: rgba(255, 220, 50, 0.2);
+    }
+}
+
+/* ======================================= */
+/* ====== PÁGINA DE ARTÍCULO INDIVIDUAL === */
+/* ======================================= */
+.article-page {
+    padding-top: 2rem;
+}
+
+.article-image {
+    max-height: 500px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.article-content {
+    max-width: 750px; /* Ancho ideal para lectura */
+}
+
+.article-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.article-content h2 {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.article-content blockquote {
+    border-left: 4px solid var(--green-platzi);
+    padding-left: 1.5rem;
+    font-style: italic;
+    margin: 2rem 0;
+}

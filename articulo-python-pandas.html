@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Bot de Precios con Python | Julian Narvaez</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-bs-spy="scroll" data-bs-target=".navbar">
+
+    <div class="social-sidebar">
+        <a href="https://github.com/julianxitoso" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+        <a href="https://www.linkedin.com/in/jose-julian-narvaez-martinez-b85b6758/" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <div class="sidebar-line"></div>
+    </div>
+
+    <div class="lamp-container">
+        <svg class="hanging-lamp" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 150" width="35" height="150">
+            <path class="lamp-cord" d="M25,0 V110"></path> 
+            <path class="lamp-shade" d="M15,110 Q25,105 35,110 L48,130 Q25,145 2,130 Z"></path>
+            <circle class="lamp-bulb" cx="25" cy="131" r="4"></circle>
+            <path class="lamp-beam" d="M20,135 l-10,30 h30 l-10,-30"></path>
+        </svg>
+    </div>
+
+    <nav class="navbar navbar-expand-lg sticky-top scrolled">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="logoweb-light.png" alt="Logo Julian Narvaez Dev" class="navbar-logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html#experiencia">Trayectoria</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#habilidades">Habilidades</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#proyectos">Proyectos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#articulos">Artículos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contacto">Contáctame</a></li>
+                </ul>
+                <div class="d-flex align-items-center ms-lg-3">
+                    <a href="CV_Julian_Narvaez_FullStack.pdf" target="_blank" class="btn btn-outline-primary resume-button me-3">Resumen</a>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="darkModeSwitch">
+                        <label class="form-check-label visually-hidden" for="darkModeSwitch">Modo Oscuro</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container article-page">
+        
+        <div class="article-header text-center my-5">
+            <p class="text-muted small accent-color fw-bold">Python & Automatización</p>
+            <h1 class="display-4 fw-bold">Cómo construí un Bot de Precios en Tiempo Real con Python</h1>
+        </div>
+
+        <img src="bot-python.jpg" class="img-fluid rounded article-image mb-5" alt="Código Python de Web Scraping">
+
+        <div class="article-content mx-auto">
+          
+            <p>En el mundo del retail, conocer el precio de la competencia no es una ventaja, es una necesidad. Durante mi experiencia gestionando tecnología, noté que el equipo de compras perdía horas valiosas revisando manualmente sitios web como Alkosto o MercadoLibre para ajustar nuestros precios.</p>
+            
+            <p>Como desarrollador, vi una oportunidad clara: <strong>Si es repetitivo, se puede automatizar.</strong></p>
+
+            <h3>El Desafío Técnico</h3>
+
+            <p>El reto no era solo "leer" una página web. Los sitios de e-commerce modernos usan técnicas anti-bot, carga dinámica con JavaScript y estructuras que cambian constantemente. Usar librerías básicas no era suficiente para obtener datos fiables y constantes.</p>
+            
+            <blockquote>
+                <p class="mb-0">"La automatización no se trata de reemplazar personas, sino de liberar su tiempo para tareas donde la creatividad humana es irremplazable."</p>
+            </blockquote>
+
+            <h3>La Solución: Python + Selenium</h3>
+            <p>Decidí utilizar <strong>Python</strong> por su robustez en el manejo de datos y <strong>Selenium</strong> para la navegación web. Esta combinación me permitió:</p>
+            
+            <ul>
+                <li>Simular la navegación de un humano real (scroll, clics, esperas aleatorias) para evitar bloqueos.</li>
+                <li>Extraer datos dinámicos que se cargan después del renderizado inicial de la página.</li>
+                <li>Evadir restricciones básicas mediante la rotación de User-Agents.</li>
+            </ul>
+
+            <h3>Resultados e Impacto</h3>
+            <p>El script resultante recorre los portales de la competencia, extrae nombres de productos, precios y disponibilidad, y consolida todo en un reporte de Excel limpio usando la librería <strong>Pandas</strong>.</p>
+            
+            <p>Lo que antes tomaba 4 horas diarias al equipo, ahora se ejecuta automáticamente en 15 minutos mientras toman su café de la mañana. Este proyecto reafirmó mi pasión por usar el código para resolver problemas reales de negocio y optimizar la operatividad de la empresa.</p>
+
+            <a href="index.html#articulos" class="btn btn-outline-success mt-5"><i class="bi bi-arrow-left-short"></i> Volver a todos los artículos</a>
+        </div>
+
+    </main>
+    
+    <footer class="text-center py-4 mt-5">
+        <p>&copy; 2025 - Diseñado y construido por Julian Narvaez</p>
+        <div id="visit-counter" class="mt-2">
+            <a href="https://www.hitwebcounter.com" target="_blank">
+            <img src="https://hitwebcounter.com/counter/counter.php?page=10178358&style=0006&nbdigits=5&type=page&initCount=0" title="Counter Widget" Alt="Visit counter" border="0" /></a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
