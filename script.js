@@ -1,17 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- MODO OSCURO ---
-    const themeSwitch = document.getElementById('darkModeSwitch');
+    // --- MODO OSCURO CON ANIMACIÓN ---
+    const themeToggle = document.getElementById('darkModeSwitch');
     const htmlElement = document.documentElement;
     const applyTheme = (theme) => {
         htmlElement.setAttribute('data-bs-theme', theme);
         localStorage.setItem('theme', theme);
+        themeToggle.classList.toggle('dark', theme === 'dark');
     };
     const savedTheme = localStorage.getItem('theme') || 'light';
     applyTheme(savedTheme);
-    themeSwitch.checked = savedTheme === 'dark';
-    themeSwitch.addEventListener('change', () => {
-        applyTheme(themeSwitch.checked ? 'dark' : 'light');
+    themeToggle.addEventListener('click', () => {
+        const isDark = htmlElement.getAttribute('data-bs-theme') === 'dark';
+        applyTheme(isDark ? 'light' : 'dark');
     });
 
     // --- NAVBAR DINÁMICA (EFECTO TRANSPARENTE A SÓLIDO) ---
